@@ -1,0 +1,39 @@
+<ion-content>
+  <ion-slides class="slides" (ionSlideDidChange)="slideChanged()">
+    <ion-slide padding>
+      <img src="assets/imgs/slides.jpg" />
+      <h1>Seja Bem-vindo</h1>
+      <h4>BioQuiz instalado com sucesso!</h4>
+      <p>Agora você passará por uma breve introdução de como funcionamos, e como podemos estar te ajudando :)</p>
+    </ion-slide>
+    <ion-slide padding>
+      <img src="assets/imgs/slides2.jpg" />
+      <h1>Com posse do aplicativo</h1>
+      <h4>Você ja pode ir respondendo!</h4>
+      <p>Provas, com temas e anos diferentes, podendo filtra-los e 
+      fazer quando quiser da forma que achar melhor, tendo sempre em posse o seu resultado final</p>
+    </ion-slide>
+    <ion-slide padding>
+      <img src="assets/imgs/slides3.jpg"/>
+      <h1>Para termina</h1>
+      <h4>Faça seu cadastro</h4>
+      <p>Preencha os campos com seus dados veridicos, assim poderemos melhorar nossa relação e poder estar
+      sempre mostrando para você seus erros e como te ajudar</p>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-row>
+      <ion-col text-center>
+        <img src="assets/imgs/dots-1.jpg" *ngIf="currentSlide == 0"/>
+        <img src="assets/imgs/dots-2.jpg" *ngIf="currentSlide == 1"/>
+        <img src="assets/imgs/dots-3.jpg" *ngIf="currentSlide >= 2"/>
+      </ion-col>
+    </ion-row>
+    <ion-fab right bottom *ngIf="currentSlide >= 2" go-page="register" root="true">
+      <button ion-fab>Entendi</button>
+    </ion-fab>
+  </ion-toolbar>
+</ion-footer>

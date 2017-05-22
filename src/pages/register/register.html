@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Registre-se</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)="register()" #registerForm="ngForm">
+    <ion-list inset>
+      <ion-item>
+        <ion-label floating>Nome</ion-label>
+        <ion-input type="text" [(ngModel)]="user.name" name="name" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="email" [(ngModel)]="user.email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Senha</ion-label>
+        <ion-input type="password" [(ngModel)]="user.password" name="password" required></ion-input>
+      </ion-item>
+
+      <p text-center>
+        <button ion-button full [disabled]="!registerForm.form.valid">Registrar</button>
+      </p>
+    </ion-list>
+  </form>
+
+  <p text-center padding>
+    <button ion-button color="danger"><img src="assets/imgs/login-google.png" /></button>
+  </p>
+
+  <hr class="hr-text" data-content="Já possui uma conta?">
+
+  <p text-center padding><button ion-button full go-page="login">Login</button></p>
+</ion-content>

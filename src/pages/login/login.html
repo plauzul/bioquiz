@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col class="logo" text-center><img src="assets/imgs/logo.png" width="70%" margin-top></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <form (ngSubmit)="login()" #loginForm="ngForm">
+        <ion-list inset>
+
+          <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email" [(ngModel)]="user.email" name="email" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Senha</ion-label>
+            <ion-input type="password" [(ngModel)]="user.password" name="password" required></ion-input>
+          </ion-item>
+
+          <ion-item margin-top>
+            <button ion-button block full padding [disabled]="!loginForm.form.valid">Entrar</button>
+          </ion-item>
+        </ion-list>
+        <section text-center>
+          <button ion-button clear padding>Esqueceu sua senha?</button>
+          <hr class="hr-text" data-content="Novo por aqui?">
+          <p padding><button ion-button full padding go-page="register">Registre-se</button></p>
+        </section>
+      </form>
+    </ion-col>
+  </ion-row>
+</ion-content>
