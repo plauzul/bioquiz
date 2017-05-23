@@ -10,9 +10,6 @@ export class Base {
 
   constructor() {
     this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    // if(!!localStorage.getItem("token")) {
-    //   this.headers.append('Authorization', 'Bearer ' + localStorage.getItem("token"));
-    // }
   }
 
   protected handleError(error: any): Promise<any> {

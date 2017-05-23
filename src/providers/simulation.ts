@@ -10,7 +10,7 @@ export class Simulation extends Base {
   }
 
   getProofs() {
-    return this.http.get(this.urlApi, {headers: this.headers})
+    return this.http.get(this.urlApi + "simulations/proofs", {headers: this.headers})
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
