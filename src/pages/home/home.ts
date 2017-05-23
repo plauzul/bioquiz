@@ -24,6 +24,8 @@ export class HomePage {
           });
           toast.present();
           setTimeout(() => {
+            localStorage.removeItem("userLogged");
+            localStorage.removeItem("token");
             this.navCtrl.setRoot(Login);
           }, 3000);
       })

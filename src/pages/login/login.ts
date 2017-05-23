@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { User } from '../../model/user.model';
 import { Auth } from '../../providers/auth';
@@ -12,17 +12,21 @@ import { Auth } from '../../providers/auth';
 export class Login {
 
   user: User = new User();
+  loading: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: Auth, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: Auth, public toastCtrl: ToastController, public loadingCtrl: LoadingController) {
   }
 
   login() {
+    this.presentLoadingCustom();
     this.auth.login(this.user)
       .then(response => {
+        this.loading.dismiss();
         localStorage.setItem('token', response.token);
         this.navCtrl.setRoot(HomePage);
       })
       .catch(error => {
+        this.loading.dismiss();
         if(error.status = 404) {
           let toast = this.toastCtrl.create({
             message: 'Email ou senha incorretos!',
@@ -43,6 +47,14 @@ export class Login {
           toast.present();
         }
       });
+  }
+  
+  presentLoadingCustom() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Espere um instante',
+    });
+
+    this.loading.present();
   }
 
 }

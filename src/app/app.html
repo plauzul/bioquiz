@@ -6,8 +6,8 @@
           <ion-icon name="exit" color="dark"></ion-icon>
         </button>
       </ion-buttons>
-      <img src="{{user?.img}}" class="img img-circle" menuClose>
-      <ion-title>{{user?.name}}</ion-title>
+      <img src="{{user?.img || 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png'}}" class="img img-circle" menuClose>
+      <ion-title>{{user?.name || 'SEM NOME'}}</ion-title>
     </div>
   </ion-header>
 

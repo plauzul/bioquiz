@@ -7,6 +7,10 @@ import { User } from '../model/user.model';
 import { HomePage } from '../pages/home/home';
 import { Initial } from '../pages/initial/initial';
 import { Login } from '../pages/login/login';
+import { Simulations } from '../pages/simulations/simulations';
+import { Notifications } from '../pages/notifications/notifications';
+import { Rank } from '../pages/rank/rank';
+import { Settings } from '../pages/settings/settings';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,10 +31,10 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage, icon: "home", badge: "" },
-      { title: 'Provas', component: HomePage, icon: "bookmarks", badge: "" },
-      { title: 'Notificações', component: HomePage, icon: "notifications", badge: "4" },
-      { title: 'Rank', component: HomePage, icon: "trophy", badge: "" },
-      { title: 'Configurações', component: HomePage, icon: "settings", badge: "" }
+      { title: 'Simulados', component: Simulations, icon: "bookmarks", badge: "" },
+      { title: 'Notificações', component: Notifications, icon: "notifications", badge: "4" },
+      { title: 'Rank', component: Rank, icon: "trophy", badge: "" },
+      { title: 'Configurações', component: Settings, icon: "settings", badge: "" }
     ];
 
     this.activePage = this.pages[0];
