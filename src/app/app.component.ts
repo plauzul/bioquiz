@@ -32,9 +32,9 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage, icon: "home", badge: "" },
       { title: 'Simulados', component: Simulations, icon: "bookmarks", badge: "" },
-      { title: 'Notificações', component: Notifications, icon: "notifications", badge: "4" },
-      { title: 'Rank', component: Rank, icon: "trophy", badge: "" },
-      { title: 'Configurações', component: Settings, icon: "settings", badge: "" }
+      // { title: 'Notificações', component: Notifications, icon: "notifications", badge: "4" },
+      // { title: 'Rank', component: Rank, icon: "trophy", badge: "" },
+      // { title: 'Configurações', component: Settings, icon: "settings", badge: "" }
     ];
 
     this.activePage = this.pages[0];

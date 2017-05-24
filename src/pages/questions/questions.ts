@@ -6,27 +6,32 @@ import { Simulation } from '../../providers/simulation';
 
 @IonicPage()
 @Component({
-  selector: 'page-simulations',
-  templateUrl: 'simulations.html',
+  selector: 'page-questions',
+  templateUrl: 'questions.html',
 })
-export class Simulations {
+export class Questions {
 
   loading: any;
-  proofs: Array<{ id: number, name: string }>;
+  notQuestions: boolean;
+  questions: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public simulation: Simulation, public toastCtrl: ToastController) {
   }
 
-  ionViewDidEnter() {
+  ionViewDidLoad() {
     this.presentLoadingCustom();
 
-    this.simulation.getProofs()
-      .then(response => {
-        this.proofs = response;
-        this.loading.dismiss();
-      })
-      .catch(error => {
-        this.loading.dismiss();
+    this.simulation.getQuestions(this.navParams.data.id)
+     .then(response => {
+       this.loading.dismiss();
+       if(!!response.status) {
+         this.notQuestions = true;
+       } else {
+         this.questions = response;
+       }
+     })
+     .catch(error => {
+       this.loading.dismiss();
         let toast = this.toastCtrl.create({
           message: 'Houve um erro! Recomendamos que seja feito o login novamente.',
           duration: 3000
@@ -35,7 +40,7 @@ export class Simulations {
         setTimeout(() => {
           this.navCtrl.setRoot(Login);
         }, 3000);
-      })
+     })
   }
 
   presentLoadingCustom() {

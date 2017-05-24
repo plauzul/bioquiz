@@ -9,4 +9,12 @@
 
 <ion-content padding>
 
+  <section *ngFor="let proof of proofs">
+    <ion-card>
+      <ion-card-header go-page="questions" params='{"id": "{{proof.id}}"}'>
+        {{proof.name}}
+      </ion-card-header>
+    </ion-card>
+  </section>
+
 </ion-content>

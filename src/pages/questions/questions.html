@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>10 questões</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <section *ngIf="notQuestions">
+    <ion-card>
+
+      <ion-card-header text-center>
+        Desculpe-nos :(
+      </ion-card-header>
+
+      <ion-card-content>
+        Nenhuma questão de biologia (no momento) disponivel dessa prova.
+      </ion-card-content>
+
+    </ion-card>
+  </section>
+  <section *ngIf="!notQuestions">
+    <ion-card *ngFor="let question of questions">
+
+      <ion-card-header text-wrap>
+        <strong>{{question.question}}</strong>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>(A) {{question.a}}</p>
+        <p>(B) {{question.b}}</p>
+        <p>(C) {{question.c}}</p>
+        <p>(D) {{question.d}}</p>
+      </ion-card-content>
+
+    </ion-card>
+
+    <button ion-button full>Terminei</button>
+  </section>
+</ion-content>

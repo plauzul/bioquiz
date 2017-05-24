@@ -15,6 +15,7 @@ import { Simulations } from '../pages/simulations/simulations';
 import { Notifications } from '../pages/notifications/notifications';
 import { Rank } from '../pages/rank/rank';
 import { Settings } from '../pages/settings/settings';
+import { Questions } from '../pages/questions/questions';
 
 // Components
 import { GoPage } from '../components/go-page/go-page';
@@ -35,7 +36,8 @@ import { Simulation } from '../providers/simulation';
     Simulations,
     Notifications,
     Rank,
-    Settings
+    Settings,
+    Questions
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { Simulation } from '../providers/simulation';
     Simulations,
     Notifications,
     Rank,
-    Settings
+    Settings,
+    Questions
   ],
   providers: [
     StatusBar,

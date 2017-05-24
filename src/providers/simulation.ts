@@ -16,4 +16,11 @@ export class Simulation extends Base {
                .catch(this.handleError);
   }
 
+  getQuestions(id) {
+    return this.http.get(this.urlApi + "simulations/questions/" + id, {headers: this.headers})
+               .toPromise()
+               .then(response => response.json())
+               .catch(this.handleError);
+  }
+
 }
