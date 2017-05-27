@@ -20,8 +20,8 @@ export class MyApp {
 
   rootPage: any = !!localStorage.getItem('token') ? HomePage : Initial;
   pages: Array<{ title: string, component: any, icon: string, badge: string }>;
-  activePage: any;
   user: User = new User();
+  activePage: any;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
@@ -57,7 +57,7 @@ export class MyApp {
   }
 
   checkActive(page) {
-    return page == this.activePage;
+    return !(page == this.activePage);
   }
 
   exit() {

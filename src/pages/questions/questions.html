@@ -13,27 +13,64 @@
       </ion-card-header>
 
       <ion-card-content>
-        Nenhuma questão de biologia (no momento) disponivel dessa prova.
+        Nenhuma questão de biologia (no momento) disponivel para essa prova.
       </ion-card-content>
 
     </ion-card>
   </section>
   <section *ngIf="!notQuestions">
-    <ion-card *ngFor="let question of questions">
-
-      <ion-card-header text-wrap>
-        <strong>{{question.question}}</strong>
-      </ion-card-header>
-
-      <ion-card-content>
-        <p>(A) {{question.a}}</p>
-        <p>(B) {{question.b}}</p>
-        <p>(C) {{question.c}}</p>
-        <p>(D) {{question.d}}</p>
-      </ion-card-content>
-
-    </ion-card>
-
-    <button ion-button full>Terminei</button>
+    <ion-slides class="slides">
+      <ion-slide padding>
+        <div *ngFor="let question of questions; let i = index">
+          <div *ngIf="i == 0">
+            <strong>1°) {{question.question}}</strong>
+            <ion-list radio-group text-wrap [(ngModel)]="questionsSimulation.q1">
+            <ion-item>
+              <ion-label>A {{question.a}}</ion-label>
+              <ion-radio value="a" checked></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>B {{question.b}}</ion-label>
+              <ion-radio value="b"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>C {{question.c}}</ion-label>
+              <ion-radio value="c"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>D {{question.d}}</ion-label>
+              <ion-radio value="d"></ion-radio>
+            </ion-item>
+          </ion-list>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide padding>
+        <div *ngFor="let question of questions; let i = index">
+          <div *ngIf="i == 1">
+            <strong>2°) {{question.question}}</strong>
+            <ion-list radio-group text-wrap [(ngModel)]="questionsSimulation.q2">
+            <ion-item>
+              <ion-label>A {{question.a}}</ion-label>
+              <ion-radio value="a" checked></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>B {{question.b}}</ion-label>
+              <ion-radio value="b"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>C {{question.c}}</ion-label>
+              <ion-radio value="c"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>D {{question.d}}</ion-label>
+              <ion-radio value="d"></ion-radio>
+            </ion-item>
+          </ion-list>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slides>
+    <button ion-button (click)="finished()">Terminei</button>
   </section>
 </ion-content>

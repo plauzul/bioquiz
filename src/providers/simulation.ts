@@ -23,4 +23,12 @@ export class Simulation extends Base {
                .catch(this.handleError);
   }
 
+  setResult(idUser, idProof, questionsSimulation) {
+    console.log(this.jsonToQueryString(questionsSimulation));
+    return this.http.post(this.urlApi + "simulations/result/" + idUser + "/" + idProof, this.jsonToQueryString(questionsSimulation), {headers: this.headers})
+               .toPromise()
+               .then(response => response.json())
+               .catch(this.handleError);
+  }
+
 }

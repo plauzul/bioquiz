@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { Login } from '../login/login';
+import { QuestionsSimulation } from '../../model/questions-simulation.model';
 
 import { Simulation } from '../../providers/simulation';
 
@@ -14,6 +15,7 @@ export class Questions {
   loading: any;
   notQuestions: boolean;
   questions: any;
+  questionsSimulation: QuestionsSimulation = new QuestionsSimulation();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public simulation: Simulation, public toastCtrl: ToastController) {
   }
@@ -50,5 +52,10 @@ export class Questions {
 
     this.loading.present();
   }
+
+  finished() {
+    this.simulation.setResult(JSON.parse(localStorage.getItem("userLogged")).id, this.navParams.data.id, this.questionsSimulation);
+  }
+
 
 }
