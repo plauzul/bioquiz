@@ -6,7 +6,7 @@ export class Base {
 
 	protected headers = new Headers();
 
-  protected urlApi: string = 'http://bioquiz-api.com/api/';
+  protected urlApi: string = 'http://hcapi.hol.es/api/';
 
   constructor() {
     this.headers.append('Content-Type', 'application/x-www-form-urlencoded');

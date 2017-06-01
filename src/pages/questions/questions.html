@@ -19,26 +19,27 @@
     </ion-card>
   </section>
   <section *ngIf="!notQuestions">
-    <ion-slides class="slides">
+    <ion-slides class="slides" (ionSlideDidChange)="slideChanged()">
       <ion-slide padding>
         <div *ngFor="let question of questions; let i = index">
           <div *ngIf="i == 0">
+            {{setId(i, question.id)}}
             <strong>1°) {{question.question}}</strong>
-            <ion-list radio-group text-wrap [(ngModel)]="questionsSimulation.q1">
+            <ion-list radio-group text-wrap text-left [(ngModel)]="questionsSimulation.q1">
             <ion-item>
-              <ion-label>A {{question.a}}</ion-label>
+              <ion-label>A) {{question.a}}</ion-label>
               <ion-radio value="a" checked></ion-radio>
             </ion-item>
             <ion-item>
-              <ion-label>B {{question.b}}</ion-label>
+              <ion-label>B) {{question.b}}</ion-label>
               <ion-radio value="b"></ion-radio>
             </ion-item>
             <ion-item>
-              <ion-label>C {{question.c}}</ion-label>
+              <ion-label>C) {{question.c}}</ion-label>
               <ion-radio value="c"></ion-radio>
             </ion-item>
             <ion-item>
-              <ion-label>D {{question.d}}</ion-label>
+              <ion-label>D) {{question.d}}</ion-label>
               <ion-radio value="d"></ion-radio>
             </ion-item>
           </ion-list>
@@ -48,22 +49,23 @@
       <ion-slide padding>
         <div *ngFor="let question of questions; let i = index">
           <div *ngIf="i == 1">
+            {{setId(i, question.id)}}
             <strong>2°) {{question.question}}</strong>
             <ion-list radio-group text-wrap [(ngModel)]="questionsSimulation.q2">
             <ion-item>
-              <ion-label>A {{question.a}}</ion-label>
+              <ion-label>A) {{question.a}}</ion-label>
               <ion-radio value="a" checked></ion-radio>
             </ion-item>
             <ion-item>
-              <ion-label>B {{question.b}}</ion-label>
+              <ion-label>B) {{question.b}}</ion-label>
               <ion-radio value="b"></ion-radio>
             </ion-item>
             <ion-item>
-              <ion-label>C {{question.c}}</ion-label>
+              <ion-label>C) {{question.c}}</ion-label>
               <ion-radio value="c"></ion-radio>
             </ion-item>
             <ion-item>
-              <ion-label>D {{question.d}}</ion-label>
+              <ion-label>D) {{question.d}}</ion-label>
               <ion-radio value="d"></ion-radio>
             </ion-item>
           </ion-list>
@@ -71,6 +73,6 @@
         </div>
       </ion-slide>
     </ion-slides>
-    <button ion-button (click)="finished()">Terminei</button>
+    <button ion-button (click)="finished()" *ngIf="!!viewButton">Terminei</button>
   </section>
 </ion-content>

@@ -9,4 +9,14 @@ export class QuestionsSimulation {
     q8?: string;
     q9?: string;
     q10?: string;
+    idq1 ?:string;
+    idq2 ?:string;
+    idq3 ?:string;
+    idq4 ?:string;
+    idq5 ?:string;
+    idq6 ?:string;
+    idq7 ?:string;
+    idq8 ?:string;
+    idq9 ?:string;
+    idq10 ?:string;
 }
