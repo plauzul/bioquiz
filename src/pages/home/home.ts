@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { Users } from '../../providers/users';
 import { User } from '../../model/user.model';
@@ -10,6 +10,8 @@ import { Login } from '../login/login';
 })
 export class HomePage {
 
+  @ViewChild('barCanvas') barCanvas;
+  barChart: any;
   hour: number = new Date().getHours();
   messageWelcome: string;
   user: User = new User();

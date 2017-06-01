@@ -25,7 +25,8 @@ export class GoPage {
     this.pages = [
       { title: 'register', component: Register },
       { title: 'login', component: Login },
-      { title: 'questions', component: Questions }
+      { title: 'questions', component: Questions },
+      { title: 'simulations', component: Simulations }
     ];
   }
 

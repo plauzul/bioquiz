@@ -1,10 +1,27 @@
 <ion-header>
   <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Seus resultados</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  
+  <ion-card>
+    <ion-card-header text-center text-wrap color="{{messageColor}}">
+      {{messageResult}}
+      <hr class="line">
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <canvas #barCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <button ion-button go-page="simulations" root="true">Fazer mais questões</button>
+
 </ion-content>

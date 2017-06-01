@@ -61,7 +61,7 @@ export class Questions {
   finished() {
     this.simulation.setResult(JSON.parse(localStorage.getItem("userLogged")).id, this.navParams.data.id, this.questionsSimulation)
       .then(response => {
-        this.navCtrl.push(ResultQuestions, {
+        this.navCtrl.setRoot(ResultQuestions, {
           percentage: response.percentage
         })
       })
