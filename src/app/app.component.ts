@@ -9,9 +9,9 @@ import { HomePage } from '../pages/home/home';
 import { Initial } from '../pages/initial/initial';
 import { Login } from '../pages/login/login';
 import { Simulations } from '../pages/simulations/simulations';
-import { Notifications } from '../pages/notifications/notifications';
-import { Rank } from '../pages/rank/rank';
-import { Settings } from '../pages/settings/settings';
+// import { Notifications } from '../pages/notifications/notifications';
+// import { Rank } from '../pages/rank/rank';
+// import { Settings } from '../pages/settings/settings';
 
 @Component({
   templateUrl: 'app.html'
