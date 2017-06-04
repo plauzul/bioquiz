@@ -12,7 +12,6 @@
     <ion-col>
       <form (ngSubmit)="login()" #loginForm="ngForm">
         <ion-list inset>
-
           <ion-item>
             <ion-label floating>Email</ion-label>
             <ion-input type="email" [(ngModel)]="user.email" name="email" required></ion-input>
@@ -27,12 +26,12 @@
             <button ion-button block full padding [disabled]="!loginForm.form.valid">Entrar</button>
           </ion-item>
         </ion-list>
-        <section text-center>
-          <button ion-button clear padding>Esqueceu sua senha?</button>
-          <hr class="hr-text" data-content="Novo por aqui?">
-          <p padding><button ion-button full padding go-page="register">Registre-se</button></p>
-        </section>
       </form>
+      <section text-center>
+        <a ion-button clear padding>Esqueceu sua senha?</a>
+        <hr class="hr-text" data-content="Novo por aqui?">
+        <p padding><button ion-button full padding go-page="register">Registre-se</button></p>
+      </section>
     </ion-col>
   </ion-row>
 </ion-content>

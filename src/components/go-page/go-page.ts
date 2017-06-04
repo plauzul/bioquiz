@@ -26,7 +26,10 @@ export class GoPage {
       { title: 'register', component: Register },
       { title: 'login', component: Login },
       { title: 'questions', component: Questions },
-      { title: 'simulations', component: Simulations }
+      { title: 'simulations', component: Simulations },
+      { title: 'settings',  component: Settings },
+      { title: 'rank', component: Rank },
+      { title: 'notifications', component: Notifications }
     ];
   }
 

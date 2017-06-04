@@ -2,7 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { Users } from '../../providers/users';
 import { User } from '../../model/user.model';
+import { Week } from '../../model/week.model';
 import { Login } from '../login/login';
+import { Chart } from 'chart.js';
+import { Simulation } from '../../providers/simulation';
 
 @Component({
   selector: 'page-home',
@@ -15,9 +18,9 @@ export class HomePage {
   hour: number = new Date().getHours();
   messageWelcome: string;
   user: User = new User();
+  resultsUser: Week = new Week();
 
-  constructor(public navCtrl: NavController, public users: Users, public toastCtrl: ToastController) {
-    this.user = JSON.parse(localStorage.getItem("userLogged"));
+  constructor(public navCtrl: NavController, public users: Users, public toastCtrl: ToastController, public simulation: Simulation) {
     if(this.hour >= 0 && this.hour <= 12) {
       this.messageWelcome = "Bom dia";
     } else if(this.hour > 12 && this.hour <= 18) {
@@ -29,21 +32,92 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.users.getUser()
-      .then(response => {
-        localStorage.setItem("userLogged", JSON.stringify(response));
-      })
-      .catch(error => {
-        let toast = this.toastCtrl.create({
-            message: 'Houve um erro desconhecido você será direcionado ao login!',
-            duration: 3000
-          });
-          toast.present();
-          setTimeout(() => {
-            localStorage.removeItem("userLogged");
-            localStorage.removeItem("token");
-            this.navCtrl.setRoot(Login);
-          }, 3000);
-      })
+    .then(response => {
+      localStorage.setItem("userLogged", JSON.stringify(response));
+      this.user = JSON.parse(localStorage.getItem("userLogged"));
+      this.presentChart();
+    })
+    .catch(error => {
+      let toast = this.toastCtrl.create({
+        message: 'Houve um erro desconhecido você será direcionado ao login!',
+        duration: 3000
+      });
+      toast.present();
+      setTimeout(() => {
+        localStorage.removeItem("userLogged");
+        localStorage.removeItem("token");
+        this.navCtrl.setRoot(Login);
+      }, 3000);
+    });
+  }
+
+  presentChart() {
+    this.simulation.getResult(JSON.parse(localStorage.getItem("userLogged")).id)
+    .then(response => {
+      response.forEach((value) => {
+        let parts = value.created_at.split(" ")[0].split("-");
+        let year = parseInt(parts[0], 10);
+        let month = parseInt(parts[1], 10) - 1;
+        let day = parseInt(parts[2], 10);
+        let date = new Date(year, month, day);
+        let week = ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado", "domingo"];
+        let dia = week[date.getDay()];
+        this.resultsUser[dia] = value.percentage;
+
+        this.barChart = new Chart(this.barCanvas.nativeElement, {
+          type: 'line',
+          data : {
+            labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado', 'Domingo'],
+            datasets: [
+              {
+                label: 'Porcentagem',
+                fillColor: 'rgba(220, 220, 220, 0.2)',
+                strokeColor: 'rgba(220, 220, 220, 1)',
+                pointColor: 'rgba(220, 220, 220, 1)',
+                pointStrokeColor: '#fff',
+                pointHighlighFill: '#fff',
+                pointHighlighStroke: 'rgba(220, 220, 220, 1)',
+                data: [
+                  parseInt(this.resultsUser.segunda),
+                  parseInt(this.resultsUser.terca),
+                  parseInt(this.resultsUser.quarta),
+                  parseInt(this.resultsUser.quinta),
+                  parseInt(this.resultsUser.sexta),
+                  parseInt(this.resultsUser.sabado),
+                  parseInt(this.resultsUser.domingo)
+                ]
+              }
+            ]
+          }
+        });
+      });
+    })
+    .catch(error => {
+      let toast = this.toastCtrl.create({
+        message: 'Houve um erro desconhecido, o relatório não será exibido',
+        duration: 3000
+      });
+      toast.present();
+    });
+  }
+
+  shuffle(array) {
+    let currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
   }
 
 }

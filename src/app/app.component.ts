@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { User } from '../model/user.model';
+import { Users } from '../providers/users';
 
 import { HomePage } from '../pages/home/home';
 import { Initial } from '../pages/initial/initial';
@@ -23,7 +24,7 @@ export class MyApp {
   user: User = new User();
   activePage: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public users: Users) {
     this.initializeApp();
 
     this.user = JSON.parse(localStorage.getItem("userLogged"));
