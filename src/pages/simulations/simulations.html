@@ -19,7 +19,7 @@
 <ion-content padding>
   <section *ngIf="!visibilityMessageError">
     <ion-card *ngFor="let proof of proofs">
-      <ion-card-header go-page="questions" params='{"id": "{{proof.id}}"}'>
+      <ion-card-header go-page="questions" params='{"id": "{{proof.id}}", "name": "{{proof.name}}"}'>
         {{proof.name}}
       </ion-card-header>
     </ion-card>

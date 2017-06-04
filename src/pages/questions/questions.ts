@@ -21,14 +21,16 @@ export class Questions {
   questions: any;
   questionsSimulation: QuestionsSimulation = new QuestionsSimulation();
   viewButton: boolean;
+  params: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public simulation: Simulation, public toastCtrl: ToastController) {
+    this.params = this.navParams.data;
   }
 
   ionViewDidLoad() {
     this.presentLoadingCustom();
 
-    this.simulation.getQuestions(this.navParams.data.id)
+    this.simulation.getQuestions(this.params.id)
      .then(response => {
        this.loading.dismiss();
        if(!!response.status) {
