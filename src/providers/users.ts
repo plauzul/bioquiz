@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { User } from '../model/user.model';
 import { Base } from './base';
 
 @Injectable()
