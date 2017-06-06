@@ -26,6 +26,7 @@ import { GoPage } from '../components/go-page/go-page';
 import { Auth } from '../providers/auth';
 import { Users } from '../providers/users';
 import { Simulation } from '../providers/simulation';
+import { Ranks } from '../providers/ranks';
 import { Network } from '@ionic-native/network';
 import { Facebook } from '@ionic-native/facebook';
 
@@ -70,6 +71,7 @@ import { Facebook } from '@ionic-native/facebook';
     Auth,
     Users,
     Simulation,
+    Ranks,
     Network,
     Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

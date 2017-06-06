@@ -8,5 +8,35 @@
 </ion-header>
 
 <ion-content padding>
-
+  <ion-list>
+    <ion-item *ngFor="let userRank of usersRank; let i = index">
+      <ion-avatar item-left>
+        <img src="{{userRank.img}}">
+      </ion-avatar>
+      <ion-avatar item-right *ngIf="i == 0">
+        <img src="assets/imgs/trofeu-1.png">
+      </ion-avatar>
+      <ion-avatar item-right *ngIf="i == 1">
+        <img src="assets/imgs/trofeu-2.png">
+      </ion-avatar>
+      <ion-avatar item-right *ngIf="i == 2">
+        <img src="assets/imgs/trofeu-3.png">
+      </ion-avatar>
+      <h2>{{userRank.name}}</h2>
+      <p>{{userRank.points}} pts</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<!--<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-title>Sua posição: 11°</ion-title>
+    <ion-item color="primary">
+      <ion-avatar item-left>
+        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png">
+      </ion-avatar>
+      <h2>Paulo Henrique</h2>
+      <p>10 pts</p>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>-->

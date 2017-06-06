@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
-import { Login } from '../login/login';
-
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular'
 import { Simulation } from '../../providers/simulation';
 
 @IonicPage()
@@ -15,7 +13,13 @@ export class Simulations {
   proofs: any;
   visibility: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public simulation: Simulation, public toastCtrl: ToastController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public loadingCtrl: LoadingController,
+    public simulation: Simulation,
+    public toastCtrl: ToastController
+  ) {
   }
 
   ionViewDidEnter() {
@@ -30,13 +34,10 @@ export class Simulations {
       .catch(error => {
         this.loading.dismiss();
         let toast = this.toastCtrl.create({
-          message: 'Houve um erro! Recomendamos que seja feito o login novamente.',
+          message: 'Houve um erro! Não será exibido os tipos de prova :(',
           duration: 3000
         });
         toast.present();
-        setTimeout(() => {
-          this.navCtrl.setRoot(Login);
-        }, 3000);
       })
   }
 

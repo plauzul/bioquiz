@@ -1,11 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ToastController, Slides } from 'ionic-angular';
-import { Login } from '../login/login';
 import { QuestionsSimulation } from '../../model/questions-simulation.model';
-
 import { ResultQuestions } from '../result-questions/result-questions';
 import { Simulations } from '../simulations/simulations';
-
 import { Simulation } from '../../providers/simulation';
 
 @IonicPage()
@@ -23,7 +20,13 @@ export class Questions {
   viewButton: boolean;
   params: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public simulation: Simulation, public toastCtrl: ToastController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public loadingCtrl: LoadingController,
+    public simulation: Simulation,
+    public toastCtrl: ToastController
+  ) {
     this.params = this.navParams.data;
   }
 
@@ -40,15 +43,15 @@ export class Questions {
        }
      })
      .catch(error => {
-       this.loading.dismiss();
-        let toast = this.toastCtrl.create({
-          message: 'Houve um erro! Recomendamos que seja feito o login novamente.',
-          duration: 3000
-        });
-        toast.present();
-        setTimeout(() => {
-          this.navCtrl.setRoot(Login);
-        }, 3000);
+      this.loading.dismiss();
+      let toast = this.toastCtrl.create({
+        message: 'Houve um erro! tente novamente.',
+        duration: 3000
+      });
+      toast.present();
+      setTimeout(() => {
+        this.navCtrl.setRoot(Simulations);
+      }, 3000);
      })
   }
 
@@ -80,7 +83,7 @@ export class Questions {
   }
 
   slideChanged() {
-    if(this.slides.getActiveIndex() >= 1) { // depois mudar para 10
+    if(this.slides.getActiveIndex() >= 10) {
       this.viewButton = true;
     } else {
       this.viewButton = false;

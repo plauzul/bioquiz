@@ -20,7 +20,12 @@ export class HomePage {
   user: User = new User();
   resultsUser: Week = new Week();
 
-  constructor(public navCtrl: NavController, public users: Users, public toastCtrl: ToastController, public simulation: Simulation) {
+  constructor(
+    public navCtrl: NavController,
+    public users: Users,
+    public toastCtrl: ToastController,
+    public simulation: Simulation
+  ) {
     if(this.hour >= 0 && this.hour <= 12) {
       this.messageWelcome = "Bom dia";
     } else if(this.hour > 12 && this.hour <= 18) {
@@ -63,33 +68,33 @@ export class HomePage {
         let week = ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado", "domingo"];
         let dia = week[date.getDay()];
         this.resultsUser[dia] = value.percentage;
+      });
 
-        this.barChart = new Chart(this.barCanvas.nativeElement, {
-          type: 'line',
-          data : {
-            labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado', 'Domingo'],
-            datasets: [
-              {
-                label: 'Porcentagem',
-                fillColor: 'rgba(220, 220, 220, 0.2)',
-                strokeColor: 'rgba(220, 220, 220, 1)',
-                pointColor: 'rgba(220, 220, 220, 1)',
-                pointStrokeColor: '#fff',
-                pointHighlighFill: '#fff',
-                pointHighlighStroke: 'rgba(220, 220, 220, 1)',
-                data: [
-                  parseInt(this.resultsUser.segunda),
-                  parseInt(this.resultsUser.terca),
-                  parseInt(this.resultsUser.quarta),
-                  parseInt(this.resultsUser.quinta),
-                  parseInt(this.resultsUser.sexta),
-                  parseInt(this.resultsUser.sabado),
-                  parseInt(this.resultsUser.domingo)
-                ]
-              }
-            ]
-          }
-        });
+      this.barChart = new Chart(this.barCanvas.nativeElement, {
+        type: 'line',
+        data : {
+          labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado', 'Domingo'],
+          datasets: [
+            {
+              label: 'Porcentagem',
+              fillColor: 'rgba(220, 220, 220, 0.2)',
+              strokeColor: 'rgba(220, 220, 220, 1)',
+              pointColor: 'rgba(220, 220, 220, 1)',
+              pointStrokeColor: '#fff',
+              pointHighlighFill: '#fff',
+              pointHighlighStroke: 'rgba(220, 220, 220, 1)',
+              data: [
+                parseInt(this.resultsUser.segunda) || 0,
+                parseInt(this.resultsUser.terca) || 0,
+                parseInt(this.resultsUser.quarta) || 0,
+                parseInt(this.resultsUser.quinta) || 0,
+                parseInt(this.resultsUser.sexta) || 0,
+                parseInt(this.resultsUser.sabado) || 0,
+                parseInt(this.resultsUser.domingo) || 0
+              ]
+            }
+          ]
+        }
       });
     })
     .catch(error => {

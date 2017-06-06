@@ -15,7 +15,13 @@ export class Register {
 
   user: User = new User();
 
-  constructor(public navCtrl: NavController, public auth: Auth, public toastCtrl: ToastController, public network: Network, public fb: Facebook) {
+  constructor(
+    public navCtrl: NavController,
+    public auth: Auth,
+    public toastCtrl: ToastController,
+    public network: Network,
+    public fb: Facebook
+  ) {
   }
 
   register() {
@@ -32,11 +38,19 @@ export class Register {
           this.navCtrl.setRoot(HomePage);
         })
         .catch(error => {
-          let toast = this.toastCtrl.create({
-            message: 'Verefique se seus dados estão corretos!',
-            duration: 3000
-          });
-          toast.present();
+          if(JSON.parse(error._body).email[0]) {
+            let toast = this.toastCtrl.create({
+              message: JSON.parse(error._body).email[0],
+              duration: 3000
+            });
+            toast.present();
+          } else {
+            let toast = this.toastCtrl.create({
+              message: 'Verefique se seus dados estão corretos!',
+              duration: 3000
+            });
+            toast.present();
+          }
       });
     }
   }

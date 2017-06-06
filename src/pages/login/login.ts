@@ -15,7 +15,13 @@ export class Login {
   user: User = new User();
   loading: any;
 
-  constructor(public navCtrl: NavController, public auth: Auth, public toastCtrl: ToastController, public loadingCtrl: LoadingController, public network: Network) {
+  constructor(
+    public navCtrl: NavController,
+    public auth: Auth,
+    public toastCtrl: ToastController,
+    public loadingCtrl: LoadingController,
+    public network: Network
+  ) {
   }
 
   login() {

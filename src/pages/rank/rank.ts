@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, LoadingController } from 'ionic-angular';
+import { Ranks } from '../../providers/ranks';
 
-/**
- * Generated class for the Rank page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-rank',
@@ -14,11 +9,41 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Rank {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  loading: any;
+  usersRank: any;
+
+  constructor(
+    public navCtrl: NavController,
+    public ranks: Ranks,
+    public toastCtrl: ToastController,
+    public loadingCtrl: LoadingController
+  ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Rank');
+    this.presentLoadingCustom();
+
+    this.ranks.getPositioning()
+    .then(response => {
+      this.loading.dismiss();
+      this.usersRank = response;
+    })
+    .catch(error => {
+      this.loading.dismiss();
+      let toast = this.toastCtrl.create({
+        message: 'Houve um erro! Não será exebido o rank :(',
+        duration: 3000
+      });
+      toast.present();
+    })
+  }
+
+  presentLoadingCustom() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Espere um instante',
+    });
+
+    this.loading.present();
   }
 
 }

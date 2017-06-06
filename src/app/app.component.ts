@@ -3,14 +3,13 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { User } from '../model/user.model';
-import { Users } from '../providers/users';
 
 import { HomePage } from '../pages/home/home';
 import { Initial } from '../pages/initial/initial';
 import { Login } from '../pages/login/login';
 import { Simulations } from '../pages/simulations/simulations';
 // import { Notifications } from '../pages/notifications/notifications';
-// import { Rank } from '../pages/rank/rank';
+import { Rank } from '../pages/rank/rank';
 // import { Settings } from '../pages/settings/settings';
 
 @Component({
@@ -24,7 +23,7 @@ export class MyApp {
   user: User = new User();
   activePage: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public users: Users) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     this.user = JSON.parse(localStorage.getItem("userLogged"));
@@ -34,7 +33,7 @@ export class MyApp {
       { title: 'Home', component: HomePage, icon: "home", badge: "" },
       { title: 'Simulados', component: Simulations, icon: "bookmarks", badge: "" },
       // { title: 'Notificações', component: Notifications, icon: "notifications", badge: "4" },
-      // { title: 'Rank', component: Rank, icon: "trophy", badge: "" },
+      { title: 'Rank', component: Rank, icon: "trophy", badge: "" },
       // { title: 'Configurações', component: Settings, icon: "settings", badge: "" }
     ];
 
