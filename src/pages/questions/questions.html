@@ -281,3 +281,8 @@
     <button ion-button (click)="finished()" *ngIf="!!viewButton">Terminei</button>
   </section>
 </ion-content>
+
+<section class="tuturial" *ngIf="viewAlreadyIn">
+  <img src="assets/imgs/tuturial-questions.png">
+  <button ion-button (click)="gotItTuturial()" class="floating-button">entendi</button>
+</section>

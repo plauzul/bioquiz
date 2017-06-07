@@ -19,6 +19,7 @@ export class Questions {
   questionsSimulation: QuestionsSimulation = new QuestionsSimulation();
   viewButton: boolean;
   params: any;
+  viewAlreadyIn: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -31,6 +32,16 @@ export class Questions {
   }
 
   ionViewDidLoad() {
+    if(localStorage.getItem("alreadyIn")) {
+      this.viewAlreadyIn = false;
+      this.getQuestions();
+    } else {
+      this.viewAlreadyIn = true;
+      localStorage.setItem("alreadyIn", "true");
+    }
+  }
+
+  getQuestions() {
     this.presentLoadingCustom();
 
     this.simulation.getQuestions(this.params.id)
@@ -53,6 +64,11 @@ export class Questions {
         this.navCtrl.setRoot(Simulations);
       }, 3000);
      })
+  }
+
+  gotItTuturial() {
+    this.viewAlreadyIn = false;
+    this.getQuestions();
   }
 
   presentLoadingCustom() {
