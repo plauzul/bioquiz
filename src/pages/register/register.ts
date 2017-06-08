@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { Network } from '@ionic-native/network';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
@@ -20,7 +20,8 @@ export class Register {
     public auth: Auth,
     public toastCtrl: ToastController,
     public network: Network,
-    public fb: Facebook
+    public fb: Facebook,
+    public alertCtrl: AlertController
   ) {
   }
 
@@ -58,10 +59,15 @@ export class Register {
   registerWithFacebook() {
     this.fb.login(['public_profile', 'user_friends', 'email'])
       .then((res: FacebookLoginResponse) => {
-        alert(JSON.stringify(res.authResponse));
+        alert(JSON.stringify(res));
       })
       .catch(e => {
-        alert(JSON.stringify(e));
+        let alert = this.alertCtrl.create({
+          title: 'Oops ocorreu um erro',
+          subTitle: 'Tente fazer o registro com email e senha. Desculpe-nos',
+          buttons: ['OK']
+        });
+        alert.present();
       });
   }
 

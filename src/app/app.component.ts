@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HeaderColor } from '@ionic-native/header-color';
 import { User } from '../model/user.model';
 
 import { HomePage } from '../pages/home/home';
@@ -23,7 +24,12 @@ export class MyApp {
   user: User = new User();
   activePage: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public headerColor: HeaderColor
+  ) {
     this.initializeApp();
 
     this.user = JSON.parse(localStorage.getItem("userLogged"));
@@ -45,6 +51,7 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.headerColor.tint('#2dbe60');
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
