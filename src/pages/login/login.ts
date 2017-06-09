@@ -25,37 +25,39 @@ export class Login {
   }
 
   login() {
-    if(this.network.type == "none") {
-      let toast = this.toastCtrl.create({
-        message: 'Por favor conecte-se a internet para poder continuar!',
-        duration: 3000
-      });
-      toast.present();
-    } else {
-      this.presentLoadingCustom();
-      this.auth.login(this.user)
-        .then(response => {
-          this.loading.dismiss();
-          localStorage.setItem('token', response.token);
-          this.navCtrl.setRoot(HomePage);
-        })
-        .catch(error => {
-          this.loading.dismiss();
-          if(error.status = 404) {
-            let toast = this.toastCtrl.create({
-              message: 'Email ou senha incorretos!',
-              duration: 3000
-            });
-            toast.present();
-          } else {
-            let toast = this.toastCtrl.create({
-              message: 'Houve um erro desconhecido tente novamente!',
-              duration: 3000
-            });
-            toast.present();
-          }
-      });
-    }
+    setTimeout(() => {
+      if(this.network.type == "none" || this.network.type == "unknown") {
+        let toast = this.toastCtrl.create({
+          message: 'Por favor conecte-se a internet para poder continuar!',
+          duration: 3000
+        });
+        toast.present();
+      } else {
+        this.presentLoadingCustom();
+        this.auth.login(this.user)
+          .then(response => {
+            this.loading.dismiss();
+            localStorage.setItem('token', response.token);
+            this.navCtrl.setRoot(HomePage);
+          })
+          .catch(error => {
+            this.loading.dismiss();
+            if(error.status = 404) {
+              let toast = this.toastCtrl.create({
+                message: 'Email ou senha incorretos!',
+                duration: 3000
+              });
+              toast.present();
+            } else {
+              let toast = this.toastCtrl.create({
+                message: 'Houve um erro desconhecido tente novamente!',
+                duration: 3000
+              });
+              toast.present();
+            }
+        });
+      }
+    }, 3000);
   }
   
   presentLoadingCustom() {

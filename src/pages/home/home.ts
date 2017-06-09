@@ -94,6 +94,17 @@ export class HomePage {
               ]
             }
           ]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                max: 100,
+                min: 0
+              }
+            }]
+          }
         }
       });
     })

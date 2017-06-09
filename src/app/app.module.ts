@@ -3,7 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HeaderColor } from '@ionic-native/header-color';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
@@ -75,7 +74,6 @@ import { Facebook } from '@ionic-native/facebook';
     Ranks,
     Network,
     Facebook,
-    HeaderColor,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

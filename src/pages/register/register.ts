@@ -26,34 +26,36 @@ export class Register {
   }
 
   register() {
-    if(this.network.type == "none") {
-      let toast = this.toastCtrl.create({
-        message: 'Por favor conecte-se a internet para poder continuar!',
-        duration: 3000
-      });
-      toast.present();
-    } else {
-      this.auth.register(this.user)
-        .then(response => {
-          localStorage.setItem('token', response.token);
-          this.navCtrl.setRoot(HomePage);
-        })
-        .catch(error => {
-          if(JSON.parse(error._body).email[0]) {
-            let toast = this.toastCtrl.create({
-              message: JSON.parse(error._body).email[0],
-              duration: 3000
-            });
-            toast.present();
-          } else {
-            let toast = this.toastCtrl.create({
-              message: 'Verefique se seus dados estão corretos!',
-              duration: 3000
-            });
-            toast.present();
-          }
-      });
-    }
+    setTimeout(() => {
+      if(this.network.type == "none" || this.network.type == "unknown") {
+        let toast = this.toastCtrl.create({
+          message: 'Por favor conecte-se a internet para poder continuar!',
+          duration: 3000
+        });
+        toast.present();
+      } else {
+        this.auth.register(this.user)
+          .then(response => {
+            localStorage.setItem('token', response.token);
+            this.navCtrl.setRoot(HomePage);
+          })
+          .catch(error => {
+            if(JSON.parse(error._body).email[0]) {
+              let toast = this.toastCtrl.create({
+                message: JSON.parse(error._body).email[0],
+                duration: 3000
+              });
+              toast.present();
+            } else {
+              let toast = this.toastCtrl.create({
+                message: 'Verefique se seus dados estão corretos!',
+                duration: 3000
+              });
+              toast.present();
+            }
+        });
+      }
+    }, 3000);
   }
 
   registerWithFacebook() {
