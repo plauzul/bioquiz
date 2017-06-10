@@ -25,15 +25,16 @@ export class Login {
   }
 
   login() {
+    this.presentLoadingCustom();
     setTimeout(() => {
       if(this.network.type == "none" || this.network.type == "unknown") {
+        this.loading.dismiss();
         let toast = this.toastCtrl.create({
           message: 'Por favor conecte-se a internet para poder continuar!',
           duration: 3000
         });
         toast.present();
       } else {
-        this.presentLoadingCustom();
         this.auth.login(this.user)
           .then(response => {
             this.loading.dismiss();

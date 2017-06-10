@@ -99,7 +99,7 @@ export class Questions {
   }
 
   slideChanged() {
-    if(this.slides.getActiveIndex() >= 10) {
+    if(this.slides.getActiveIndex() >= 9) {
       this.viewButton = true;
     } else {
       this.viewButton = false;
