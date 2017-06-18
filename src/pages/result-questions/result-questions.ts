@@ -33,13 +33,14 @@ export class ResultQuestions {
   }
 
   presentChart() {
+    console.log(parseInt(this.navParams.data.percentage) || 0);
   	this.barChart = new Chart(this.barCanvas.nativeElement, {
   		type: 'bar',
       data: {
       	labels: ["Hoje"],
         	datasets: [{
 						label: 'N° de acertos',
-						data: [this.navParams.data.percentage],
+            data: [parseInt(this.navParams.data.percentage) || 0],
 						backgroundColor: [
 								'rgba(255, 99, 132, 0.2)',
 						],
@@ -50,13 +51,15 @@ export class ResultQuestions {
 					}]
         },
         options: {
-					scales: {
-						yAxes: [{
-							ticks: {
-								beginAtZero:true
-							}
-						}]
-					}
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                max: 100,
+                min: 0
+              }
+            }]
+          }
         }
     });
   }

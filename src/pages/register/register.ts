@@ -31,7 +31,7 @@ export class Register {
   register() {
     this.presentLoadingCustom();
     setTimeout(() => {
-      if(this.network.type == "none" || this.network.type == "unknown") {
+      if(this.network.type == "none") {
         this.loading.dismiss();
         let toast = this.toastCtrl.create({
           message: 'Por favor conecte-se a internet para poder continuar!',
