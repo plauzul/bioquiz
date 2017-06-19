@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, ToastController } from 'ionic-angular';
+import { NavController, ToastController, NavParams } from 'ionic-angular';
 import { Users } from '../../providers/users';
 import { User } from '../../model/user.model';
 import { Week } from '../../model/week.model';
@@ -19,13 +19,22 @@ export class HomePage {
   messageWelcome: string;
   user: User = new User();
   resultsUser: Week = new Week();
+  viewAfterSplash: boolean;
 
   constructor(
     public navCtrl: NavController,
     public users: Users,
     public toastCtrl: ToastController,
-    public simulation: Simulation
+    public simulation: Simulation,
+    public navParams: NavParams
   ) {
+    if(!!this.navParams.data.bounceOut) {
+      this.viewAfterSplash = true;
+    } else {
+      setTimeout(() => {
+        this.viewAfterSplash = false;
+      }, 5000);
+    }
     if(this.hour >= 0 && this.hour <= 12) {
       this.messageWelcome = "Bom dia";
     } else if(this.hour > 12 && this.hour <= 18) {

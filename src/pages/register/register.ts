@@ -43,7 +43,9 @@ export class Register {
           .then(response => {
             this.loading.dismiss();
             localStorage.setItem('token', response.token);
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(HomePage, {
+              bounceOut: true
+            });
           })
           .catch(error => {
             this.loading.dismiss();
@@ -88,22 +90,42 @@ export class Register {
       this.user.email = response.email;
       this.user.img = response.picture;
       this.user.name = response.name;
-      this.user.password = "facebook";
+      this.user.password = "8af3066def0c62e85fc77a790cd3c67b" + this.userID;
 
-      this.auth.register(this.user)
+      this.auth.login(this.user)
       .then(response => {
         this.loading.dismiss();
         localStorage.setItem('token', response.token);
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(HomePage, {
+          bounceOut: true
+        });
       })
       .catch(error => {
-        this.loading.dismiss();
-        let alert = this.alertCtrl.create({
-          title: 'Oops ocorreu um erro',
-          subTitle: 'Tente fazer o registro com email e senha. Desculpe-nos',
-          buttons: ['OK']
-        });
-        alert.present();
+        if(error.status = 404) {
+          this.auth.register(this.user)
+          .then(response => {
+            this.loading.dismiss();
+            localStorage.setItem('token', response.token);
+            this.navCtrl.setRoot(HomePage, {
+              bounceOut: true
+            });
+          })
+          .catch(error => {
+            this.loading.dismiss();
+            let alert = this.alertCtrl.create({
+              title: 'Oops ocorreu um erro',
+              subTitle: 'Tente fazer o registro com email e senha. Desculpe-nos',
+              buttons: ['OK']
+            });
+            alert.present();
+          });
+        } else {
+          let toast = this.toastCtrl.create({
+            message: 'Houve um erro desconhecido tente novamente!',
+            duration: 3000
+          });
+          toast.present();
+        }
       });
     })
     .catch(error => {

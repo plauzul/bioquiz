@@ -39,7 +39,9 @@ export class Login {
           .then(response => {
             this.loading.dismiss();
             localStorage.setItem('token', response.token);
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(HomePage, {
+              bounceOut: true
+            });
           })
           .catch(error => {
             this.loading.dismiss();
