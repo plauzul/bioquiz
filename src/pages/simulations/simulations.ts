@@ -12,6 +12,7 @@ export class Simulations {
   loading: any;
   proofs: any;
   visibility: boolean = false;
+  viewRefreshPage: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -20,6 +21,10 @@ export class Simulations {
     public simulation: Simulation,
     public toastCtrl: ToastController
   ) {
+  }
+
+  reload() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
   ionViewDidEnter() {
@@ -33,11 +38,15 @@ export class Simulations {
       })
       .catch(error => {
         this.loading.dismiss();
-        let toast = this.toastCtrl.create({
-          message: 'Houve um erro! Não será exibido os tipos de prova :(',
-          duration: 3000
-        });
-        toast.present();
+        if(!!error.name) {
+          this.viewRefreshPage = true;
+        } else {
+          let toast = this.toastCtrl.create({
+            message: 'Houve um erro! Não será exibido os tipos de prova :(',
+            duration: 3000
+          });
+          toast.present();
+        }
       })
   }
 

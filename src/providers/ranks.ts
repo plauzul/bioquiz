@@ -11,6 +11,7 @@ export class Ranks extends Base {
 
   getPositioning() {
     return this.http.get(this.urlApi + "rank/positioning", {headers: this.headers})
+               .timeout(10000)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
@@ -18,6 +19,7 @@ export class Ranks extends Base {
 
   getMyPositioning(idUser) {
     return this.http.get(this.urlApi + "rank/positioning/" + idUser, {headers: this.headers})
+               .timeout(10000)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);

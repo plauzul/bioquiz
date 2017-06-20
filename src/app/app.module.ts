@@ -5,6 +5,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { RefreshPageModule } from '../components/refresh-page/refresh-page.module';
 
 // Pages
 import { MyApp } from './app.component';
@@ -46,6 +47,7 @@ import { Facebook } from '@ionic-native/facebook';
     ResultQuestions
   ],
   imports: [
+    RefreshPageModule,
     BrowserModule,
     HttpModule,
     FormsModule,

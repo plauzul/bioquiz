@@ -12,6 +12,7 @@ export class Auth extends Base {
 
   login(user: User) {
     return this.http.post(this.urlApi + "auth/login", this.jsonToQueryString(user), {headers: this.headers})
+               .timeout(10000)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
@@ -19,6 +20,7 @@ export class Auth extends Base {
 
   register(user: User) {
     return this.http.post(this.urlApi + "auth/register", this.jsonToQueryString(user), {headers: this.headers})
+               .timeout(10000)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);

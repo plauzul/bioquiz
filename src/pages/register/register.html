@@ -25,6 +25,13 @@
       <p text-center>
         <button ion-button full [disabled]="!registerForm.form.valid">Registrar</button>
       </p>
+      <refresh-page
+        *ngIf="viewRefreshPage"
+        [message]="'Tempo de registro excedido!'"
+        [message-button]="'Tentar novamente'"
+        [icon]="'warning'"
+        (reload)="reload()">
+      </refresh-page>
     </ion-list>
   </form>
 

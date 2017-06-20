@@ -14,6 +14,7 @@ export class Login {
 
   user: User = new User();
   loading: any;
+  viewRefreshPage: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -22,6 +23,10 @@ export class Login {
     public loadingCtrl: LoadingController,
     public network: Network
   ) {
+  }
+
+  reload() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
   login() {
@@ -45,12 +50,14 @@ export class Login {
           })
           .catch(error => {
             this.loading.dismiss();
-            if(error.status = 404) {
+            if(error.status == 404) {
               let toast = this.toastCtrl.create({
                 message: 'Email ou senha incorretos!',
                 duration: 3000
               });
               toast.present();
+            } else if(!!error.name) {
+              this.viewRefreshPage = true;
             } else {
               let toast = this.toastCtrl.create({
                 message: 'Houve um erro desconhecido tente novamente!',

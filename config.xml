@@ -94,5 +94,5 @@
     <variable name="APP_ID" value="721186698043417"/>
     <variable name="APP_NAME" value="bioquiz"/>
   </plugin>
-  <icon src="resources\ios\icon\icon-small@3x.png"/>
+  <icon src="resources\android\icon\drawable-xhdpi-icon.png"/>
 </widget>

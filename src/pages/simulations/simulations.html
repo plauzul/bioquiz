@@ -17,6 +17,14 @@
 </ion-header>
 
 <ion-content padding>
+  <refresh-page
+    *ngIf="viewRefreshPage"
+    [message]="'Tempo de requisição excedido!'"
+    [message-button]="'Tentar novamente'"
+    [icon]="'warning'"
+    (reload)="reload()">
+  </refresh-page>
+
   <section *ngIf="!visibilityMessageError">
     <ion-card *ngFor="let proof of proofs">
       <ion-card-header go-page="questions" params='{"id": "{{proof.id}}", "name": "{{proof.name}}"}'>

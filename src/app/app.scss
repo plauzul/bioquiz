@@ -86,6 +86,7 @@
 }
 
 .after-splash {
+    background-color: #ffffff;
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -119,6 +120,7 @@
     }
     100% {
         opacity: 0;
+        border-radius: 50px;
         transform: scale(.3);
     }
 }

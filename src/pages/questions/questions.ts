@@ -20,6 +20,7 @@ export class Questions {
   viewButton: boolean;
   params: any;
   viewAlreadyIn: boolean;
+  viewRefreshPage: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -29,6 +30,10 @@ export class Questions {
     public toastCtrl: ToastController
   ) {
     this.params = this.navParams.data;
+  }
+
+  reload() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
   ionViewDidLoad() {
@@ -55,14 +60,18 @@ export class Questions {
      })
      .catch(error => {
       this.loading.dismiss();
-      let toast = this.toastCtrl.create({
-        message: 'Houve um erro! tente novamente.',
-        duration: 3000
-      });
-      toast.present();
-      setTimeout(() => {
-        this.navCtrl.setRoot(Simulations);
-      }, 3000);
+      if(!!error.name) {
+        this.viewRefreshPage = true;
+      } else {
+        let toast = this.toastCtrl.create({
+          message: 'Houve um erro! tente novamente.',
+          duration: 3000
+        });
+        toast.present();
+        setTimeout(() => {
+          this.navCtrl.setRoot(Simulations);
+        }, 3000);
+      }
      })
   }
 

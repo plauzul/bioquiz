@@ -20,6 +20,7 @@ export class HomePage {
   user: User = new User();
   resultsUser: Week = new Week();
   viewAfterSplash: boolean;
+  viewRefreshPage: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -44,6 +45,10 @@ export class HomePage {
     }
   }
 
+  reload() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  }
+
   ionViewDidLoad() {
     this.users.getUser()
     .then(response => {
@@ -52,16 +57,20 @@ export class HomePage {
       this.presentChart();
     })
     .catch(error => {
-      let toast = this.toastCtrl.create({
-        message: 'Houve um erro desconhecido você será direcionado ao login!',
-        duration: 3000
-      });
-      toast.present();
-      setTimeout(() => {
-        localStorage.removeItem("userLogged");
-        localStorage.removeItem("token");
-        this.navCtrl.setRoot(Login);
-      }, 3000);
+      if(!!error.name) {
+        this.viewRefreshPage = true;
+      } else {
+        let toast = this.toastCtrl.create({
+          message: 'Houve um erro desconhecido você será direcionado ao login!',
+          duration: 3000
+        });
+        toast.present();
+        setTimeout(() => {
+          localStorage.removeItem("userLogged");
+          localStorage.removeItem("token");
+          this.navCtrl.setRoot(Login);
+        }, 3000);
+      }
     });
   }
 

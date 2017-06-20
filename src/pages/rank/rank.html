@@ -8,6 +8,14 @@
 </ion-header>
 
 <ion-content padding>
+  <refresh-page
+    *ngIf="viewRefreshPage"
+    [message]="'Tempo de requisição excedido!'"
+    [message-button]="'Tentar novamente'"
+    [icon]="'warning'"
+    (reload)="reload()">
+  </refresh-page>
+
   <ion-list>
     <ion-item *ngFor="let userRank of usersRank; let i = index">
       <ion-avatar item-left>

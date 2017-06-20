@@ -11,6 +11,7 @@ export class Users extends Base {
 
   getUser() {
     return this.http.get(this.urlApi + "users/" + localStorage.getItem("token"))
+               .timeout(10000)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);

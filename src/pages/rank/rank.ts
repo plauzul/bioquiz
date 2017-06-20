@@ -11,6 +11,7 @@ export class Rank {
 
   loading: any;
   usersRank: any;
+  viewRefreshPage: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -18,6 +19,10 @@ export class Rank {
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController
   ) {
+  }
+
+  reload() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
   ionViewDidLoad() {
@@ -30,11 +35,15 @@ export class Rank {
     })
     .catch(error => {
       this.loading.dismiss();
-      let toast = this.toastCtrl.create({
-        message: 'Houve um erro! Não será exebido o rank :(',
-        duration: 3000
-      });
-      toast.present();
+      if(!!error.name) {
+        this.viewRefreshPage = true;
+      } else {
+        let toast = this.toastCtrl.create({
+          message: 'Houve um erro! Não será exebido o rank :(',
+          duration: 3000
+        });
+        toast.present();
+      }
     })
   }
 

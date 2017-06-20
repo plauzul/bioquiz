@@ -16,6 +16,7 @@ export class Register {
   user: User = new User();
   loading: any;
   userID: any;
+  viewRefreshPage: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -26,6 +27,10 @@ export class Register {
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController
   ) {
+  }
+
+  reload() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
   register() {
@@ -55,6 +60,8 @@ export class Register {
                 duration: 3000
               });
               toast.present();
+            } else if(!!error.name) {
+              this.viewRefreshPage = true;
             } else {
               let toast = this.toastCtrl.create({
                 message: 'Verefique se seus dados estão corretos!',
@@ -119,6 +126,8 @@ export class Register {
             });
             alert.present();
           });
+        } else if(!!error.name) {
+          this.viewRefreshPage = true;
         } else {
           let toast = this.toastCtrl.create({
             message: 'Houve um erro desconhecido tente novamente!',

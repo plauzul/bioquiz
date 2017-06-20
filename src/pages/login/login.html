@@ -24,6 +24,13 @@
 
           <ion-item margin-top>
             <button ion-button block full padding [disabled]="!loginForm.form.valid">Entrar</button>
+            <refresh-page
+              *ngIf="viewRefreshPage"
+              [message]="'Tempo de login excedido!'"
+              [message-button]="'Tentar novamente'"
+              [icon]="'warning'"
+              (reload)="reload()">
+            </refresh-page>
           </ion-item>
         </ion-list>
       </form>
