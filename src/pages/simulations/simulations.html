@@ -12,7 +12,13 @@
       </button>
     </ion-buttons>
     <ion-title *ngIf="!visibility">Simulados</ion-title>
-    <ion-searchbar (ionInput)="filterProofs($event)" *ngIf="visibility"></ion-searchbar>
+    <ion-searchbar
+      *ngIf="visibility"
+      (ionInput)="filterProofs($event)"
+      animated="true"
+      autocomplete="on"
+      placeholder="Nome da prova">
+    </ion-searchbar>
   </ion-navbar>
 </ion-header>
 

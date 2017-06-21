@@ -33,7 +33,6 @@ export class ResultQuestions {
   }
 
   presentChart() {
-    console.log(parseInt(this.navParams.data.percentage) || 0);
   	this.barChart = new Chart(this.barCanvas.nativeElement, {
   		type: 'bar',
       data: {

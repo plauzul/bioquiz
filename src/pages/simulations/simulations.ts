@@ -13,6 +13,7 @@ export class Simulations {
   proofs: any;
   visibility: boolean = false;
   viewRefreshPage: boolean;
+  visibilityMessageError: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -67,6 +68,12 @@ export class Simulations {
       this.proofs = this.proofs.filter((item) => {
         return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       });
+    }
+
+    if(this.proofs[0]) {
+      this.visibilityMessageError = false;
+    } else {
+      this.visibilityMessageError = true;
     }
   }
 

@@ -89,13 +89,17 @@ export class Questions {
   }
 
   finished() {
+    this.presentLoadingCustom();
+
     this.simulation.setResult(JSON.parse(localStorage.getItem("userLogged")).id, this.navParams.data.id, this.questionsSimulation)
       .then(response => {
+        this.loading.dismiss();
         this.navCtrl.setRoot(ResultQuestions, {
           percentage: response.percentage
         })
       })
       .catch(error => {
+        this.loading.dismiss();
         let toast = this.toastCtrl.create({
           message: 'Houve um erro! Nos perdoe mas começe denovo.',
           duration: 3000
