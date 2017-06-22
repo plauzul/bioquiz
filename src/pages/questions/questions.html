@@ -29,7 +29,7 @@
         <div *ngFor="let question of questions; let i = index">
           <div *ngIf="i == 0">
             {{setId(i, question.id)}}
-            <strong>1°) {{question.question}}</strong>
+            <strong>1°) <span [innerHTML]="question.question"></span></strong>
             <ion-list radio-group text-wrap text-left [(ngModel)]="questionsSimulation.q1">
             <ion-item>
               <ion-label>A) {{question.a}}</ion-label>
@@ -55,7 +55,7 @@
         <div *ngFor="let question of questions; let i = index">
           <div *ngIf="i == 1">
             {{setId(i, question.id)}}
-            <strong>2°) {{question.question}}</strong>
+            <strong>2°) <span [innerHTML]="question.question"></span></strong>
             <ion-list radio-group text-wrap [(ngModel)]="questionsSimulation.q2">
             <ion-item>
               <ion-label>A) {{question.a}}</ion-label>
@@ -81,7 +81,7 @@
         <div *ngFor="let question of questions; let i = index">
           <div *ngIf="i == 2">
             {{setId(i, question.id)}}
-            <strong>3°) {{question.question}}</strong>
+            <strong>3°) <span [innerHTML]="question.question"></span></strong>
             <ion-list radio-group text-wrap [(ngModel)]="questionsSimulation.q3">
             <ion-item>
               <ion-label>A) {{question.a}}</ion-label>
@@ -107,7 +107,7 @@
         <div *ngFor="let question of questions; let i = index">
           <div *ngIf="i == 3">
             {{setId(i, question.id)}}
-            <strong>4°) {{question.question}}</strong>
+            <strong>4°) <span [innerHTML]="question.question"></span></strong>
             <ion-list radio-group text-wrap [(ngModel)]="questionsSimulation.q4">
             <ion-item>
               <ion-label>A) {{question.a}}</ion-label>
@@ -133,7 +133,7 @@
         <div *ngFor="let question of questions; let i = index">
           <div *ngIf="i == 4">
             {{setId(i, question.id)}}
-            <strong>5°) {{question.question}}</strong>
+            <strong>5°) <span [innerHTML]="question.question"></span></strong>
             <ion-list radio-group text-wrap [(ngModel)]="questionsSimulation.q5">
             <ion-item>
               <ion-label>A) {{question.a}}</ion-label>
@@ -159,7 +159,7 @@
         <div *ngFor="let question of questions; let i = index">
           <div *ngIf="i == 5">
             {{setId(i, question.id)}}
-            <strong>6°) {{question.question}}</strong>
+            <strong>6°) <span [innerHTML]="question.question"></span></strong>
             <ion-list radio-group text-wrap [(ngModel)]="questionsSimulation.q6">
             <ion-item>
               <ion-label>A) {{question.a}}</ion-label>
@@ -185,7 +185,7 @@
         <div *ngFor="let question of questions; let i = index">
           <div *ngIf="i == 6">
             {{setId(i, question.id)}}
-            <strong>7°) {{question.question}}</strong>
+            <strong>7°) <span [innerHTML]="question.question"></span></strong>
             <ion-list radio-group text-wrap [(ngModel)]="questionsSimulation.q7">
             <ion-item>
               <ion-label>A) {{question.a}}</ion-label>
@@ -211,7 +211,7 @@
         <div *ngFor="let question of questions; let i = index">
           <div *ngIf="i == 7">
             {{setId(i, question.id)}}
-            <strong>8°) {{question.question}}</strong>
+            <strong>8°) <span [innerHTML]="question.question"></span></strong>
             <ion-list radio-group text-wrap [(ngModel)]="questionsSimulation.q8">
             <ion-item>
               <ion-label>A) {{question.a}}</ion-label>
@@ -237,7 +237,7 @@
         <div *ngFor="let question of questions; let i = index">
           <div *ngIf="i == 8">
             {{setId(i, question.id)}}
-            <strong>9°) {{question.question}}</strong>
+            <strong>9°) <span [innerHTML]="question.question"></span></strong>
             <ion-list radio-group text-wrap [(ngModel)]="questionsSimulation.q9">
             <ion-item>
               <ion-label>A) {{question.a}}</ion-label>
@@ -263,7 +263,7 @@
         <div *ngFor="let question of questions; let i = index">
           <div *ngIf="i == 9">
             {{setId(i, question.id)}}
-            <strong>10°) {{question.question}}</strong>
+            <strong>10°) <span [innerHTML]="question.question"></span></strong>
             <ion-list radio-group text-wrap [(ngModel)]="questionsSimulation.q10">
             <ion-item>
               <ion-label>A) {{question.a}}</ion-label>

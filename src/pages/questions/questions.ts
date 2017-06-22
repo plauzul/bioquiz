@@ -32,10 +32,6 @@ export class Questions {
     this.params = this.navParams.data;
   }
 
-  reload() {
-    this.navCtrl.setRoot(this.navCtrl.getActive().component);
-  }
-
   ionViewDidLoad() {
     if(localStorage.getItem("alreadyIn")) {
       this.viewAlreadyIn = false;
@@ -55,7 +51,14 @@ export class Questions {
        if(!!response.status) {
          this.notQuestions = true;
        } else {
-         this.questions = this.shuffle(response);
+         this.questions = response;
+         this.questions.forEach((value, index) => {
+          let imgUrl = value.question.match(/<#(.*)?#>/ig);
+            if(imgUrl) {
+              let imgNotHashtag = imgUrl[0].replace(/[<#][#>]/g, "");
+              this.questions[index].question = this.questions[index].question.replace(/<#(.*)?#>/ig, "<img src='"+imgNotHashtag+"'>");
+           }
+         });
        }
      })
      .catch(error => {
@@ -157,23 +160,8 @@ export class Questions {
     }
   }
 
-  shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
+  reload() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
 
