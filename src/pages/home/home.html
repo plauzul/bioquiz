@@ -31,6 +31,15 @@
       <canvas #barCanvas></canvas>
     </ion-card-content>
   </ion-card>
+
+  <ion-card margin-top>
+    <ion-card-header>
+      Ola {{user?.name}}
+    </ion-card-header>
+    <ion-card-content>
+      Você está com uma média de {{weeklyAverage}}% {{messageReport}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
 <section class="after-splash" text-center *ngIf="!viewAfterSplash">

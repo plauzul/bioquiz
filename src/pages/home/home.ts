@@ -21,6 +21,8 @@ export class HomePage {
   resultsUser: Week = new Week();
   viewAfterSplash: boolean;
   viewRefreshPage: boolean;
+  messageReport: string;
+  weeklyAverage: number;
 
   constructor(
     public navCtrl: NavController,
@@ -43,10 +45,6 @@ export class HomePage {
     } else if(this.hour > 18 && this.hour <= 23) {
       this.messageWelcome = "Boa noite";
     }
-  }
-
-  reload() {
-    this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
   ionViewDidLoad() {
@@ -72,6 +70,10 @@ export class HomePage {
         }, 3000);
       }
     });
+  }
+
+  reload() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
   presentChart() {
@@ -125,6 +127,7 @@ export class HomePage {
           }
         }
       });
+      this.presentMessageReport();
     })
     .catch(error => {
       let toast = this.toastCtrl.create({
@@ -135,23 +138,31 @@ export class HomePage {
     });
   }
 
-  shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
+  presentMessageReport() {
+    this.weeklyAverage =
+    (
+      (
+        (parseInt(this.resultsUser.segunda) / 100) || 0 +
+        (parseInt(this.resultsUser.terca) / 100) || 0 +
+        (parseInt(this.resultsUser.quarta) /100) || 0 +
+        (parseInt(this.resultsUser.quinta) / 100) || 0 +
+        (parseInt(this.resultsUser.sexta) / 100) || 0 +
+        (parseInt(this.resultsUser.sabado) / 100) || 0 +
+        (parseInt(this.resultsUser.domingo) / 100) || 0
+      ) / 7
+    ) * 100;
+    console.log(this.weeklyAverage);
+    if(this.weeklyAverage >= 0 && this.weeklyAverage <= 10) {
+      this.messageReport = "tente estudar um pouco mais";
+    } else if(this.weeklyAverage > 10 && this.weeklyAverage <= 30) {
+      this.messageReport = "está mais ou menos, mais pode ficar melhor";
+    } else if(this.weeklyAverage > 10 && this.weeklyAverage <= 50) {
+      this.messageReport = "parabéns, está no caminho certo";
+    } else if(this.weeklyAverage > 50 && this.weeklyAverage <= 70) {
+      this.messageReport = "uau que semana incrivel!";
+    } else if(this.weeklyAverage > 70 && this.weeklyAverage <= 100) {
+      this.messageReport = "simplemeste está tendo uma semana perfeita!";
     }
-
-    return array;
   }
 
 }
