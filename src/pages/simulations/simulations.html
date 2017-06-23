@@ -32,7 +32,7 @@
   </refresh-page>
 
   <section *ngIf="!visibilityMessageError">
-    <ion-card *ngFor="let proof of proofs">
+    <ion-card *ngFor="let proof of proofs" (press)="presentActionSheet(proof.id)">
       <ion-card-header go-page="questions" params='{"id": "{{proof.id}}", "name": "{{proof.name}}"}'>
         {{proof.name}}
       </ion-card-header>

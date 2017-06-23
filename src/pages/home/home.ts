@@ -151,7 +151,7 @@ export class HomePage {
         (parseInt(this.resultsUser.domingo) / 100) || 0
       ) / 7
     ) * 100;
-    console.log(this.weeklyAverage);
+
     if(this.weeklyAverage >= 0 && this.weeklyAverage <= 10) {
       this.messageReport = "tente estudar um pouco mais";
     } else if(this.weeklyAverage > 10 && this.weeklyAverage <= 30) {

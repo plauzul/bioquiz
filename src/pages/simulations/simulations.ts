@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular'
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, ActionSheetController } from 'ionic-angular'
 import { Simulation } from '../../providers/simulation';
 
 @IonicPage()
@@ -20,7 +20,8 @@ export class Simulations {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public simulation: Simulation,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public actionSheetCtrl: ActionSheetController
   ) {
   }
 
@@ -75,6 +76,41 @@ export class Simulations {
     } else {
       this.visibilityMessageError = true;
     }
+  }
+
+  presentActionSheet(idProof) {
+    let proof = this.proofs.filter((value) => {
+      return value.id == idProof;
+    });
+
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Opções para ' + proof[0].name,
+      buttons: [
+        {
+          text: 'Não mostrar',
+          role: 'destructive',
+          icon: 'eye-off',
+          handler: () => {
+            console.log('não mostrar');
+          }
+        },{
+          text: 'Favoritar',
+          role: 'destructive',
+          icon: 'star',
+          handler: () => {
+            console.log('favoritar');
+          }
+        },{
+          text: 'Cancelar',
+          role: 'cancel',
+          icon: 'close',
+          handler: () => {
+            console.log('cancelar');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 
 }
