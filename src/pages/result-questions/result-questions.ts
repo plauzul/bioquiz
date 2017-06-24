@@ -13,12 +13,14 @@ export class ResultQuestions {
   barChart: any;
   messageResult: string;
   messageColor: string;
+  wrongs: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     let percentage = parseInt(this.navParams.data.percentage);
+    this.wrongs = this.navParams.data.wrongs;
     if(percentage >= 0 && percentage <= 20) {
       this.messageResult = "Pô cara, você consegue mais que isso.";
       this.messageColor = "danger";
@@ -38,7 +40,7 @@ export class ResultQuestions {
       data: {
       	labels: ["Hoje"],
         	datasets: [{
-						label: 'N° de acertos',
+						label: 'Porcentagem de acertos',
             data: [parseInt(this.navParams.data.percentage) || 0],
 						backgroundColor: [
 								'rgba(255, 99, 132, 0.2)',

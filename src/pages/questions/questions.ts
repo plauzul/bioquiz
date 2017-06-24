@@ -98,7 +98,8 @@ export class Questions {
       .then(response => {
         this.loading.dismiss();
         this.navCtrl.setRoot(ResultQuestions, {
-          percentage: response.percentage
+          percentage: response.percentage,
+          wrongs: response.wrongs
         })
       })
       .catch(error => {

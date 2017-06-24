@@ -16,9 +16,38 @@
     </ion-card-header>
   </ion-card>
 
-  <ion-card>
+  <ion-card margin-bottom>
     <ion-card-content>
       <canvas #barCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card margin-top>
+    <ion-card-header text-center>
+      Questões erradas:
+      <hr class="line">
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card color="danger" *ngFor="let wrong of wrongs">
+    <ion-card-header text-wrap>
+      {{wrong.question}}
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list text-wrap>
+        <ion-item [color]="wrong.correct == 'a' ? 'primary' : 'danger'">
+          A) {{wrong.a}}
+        </ion-item>
+        <ion-item [color]="wrong.correct == 'b' ? 'primary' : 'danger'">
+          B) {{wrong.b}}
+        </ion-item>
+        <ion-item [color]="wrong.correct == 'c' ? 'primary' : 'danger'">
+          C) {{wrong.c}}
+        </ion-item>
+        <ion-item [color]="wrong.correct == 'd' ? 'primary' : 'danger'">
+          D) {{wrong.d}}
+        </ion-item>
+      </ion-list>
     </ion-card-content>
   </ion-card>
 
