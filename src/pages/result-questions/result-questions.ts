@@ -20,7 +20,7 @@ export class ResultQuestions {
 
   ionViewDidLoad() {
     let percentage = parseInt(this.navParams.data.percentage);
-    this.wrongs = this.navParams.data.wrongs;
+    this.wrongs = this.navParams.data.wrongs || null;
     if(percentage >= 0 && percentage <= 20) {
       this.messageResult = "Pô cara, você consegue mais que isso.";
       this.messageColor = "danger";
