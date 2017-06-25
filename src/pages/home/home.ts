@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, ToastController, NavParams } from 'ionic-angular';
 import { Users } from '../../providers/users';
+import { Auth } from '../../providers/auth';
 import { User } from '../../model/user.model';
 import { Week } from '../../model/week.model';
 import { Login } from '../login/login';
@@ -27,6 +28,7 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public users: Users,
+    public auth: Auth,
     public toastCtrl: ToastController,
     public simulation: Simulation,
     public navParams: NavParams
@@ -57,6 +59,8 @@ export class HomePage {
     .catch(error => {
       if(!!error.name) {
         this.viewRefreshPage = true;
+      } else if(error.status == 401) {
+        this.refreshToken();
       } else {
         let toast = this.toastCtrl.create({
           message: 'Houve um erro desconhecido você será direcionado ao login!',
@@ -163,6 +167,28 @@ export class HomePage {
     } else if(this.weeklyAverage > 70 && this.weeklyAverage <= 100) {
       this.messageReport = "simplemeste está tendo uma semana perfeita!";
     }
+  }
+
+  refreshToken() {
+    this.auth.refreshToken(localStorage.getItem("token"))
+    .then(response => {
+      localStorage.setItem("token", response.token);
+      this.navCtrl.setRoot(HomePage, {
+        bounceOut: true
+      });
+    })
+    .catch(error => {
+      let toast = this.toastCtrl.create({
+        message: 'Houve um erro desconhecido você será direcionado ao login!',
+        duration: 3000
+      });
+      toast.present();
+      setTimeout(() => {
+        localStorage.removeItem("userLogged");
+        localStorage.removeItem("token");
+        this.navCtrl.setRoot(Login);
+      }, 3000);
+    });
   }
 
 }

@@ -26,4 +26,12 @@ export class Auth extends Base {
                .catch(this.handleError);
   }
 
+  refreshToken(token) {
+    return this.http.get(this.urlApi + "auth/refresh-token/" + token, {headers: this.headers})
+               .timeout(10000)
+               .toPromise()
+               .then(response => response.json())
+               .catch(this.handleError);
+  }
+
 }
