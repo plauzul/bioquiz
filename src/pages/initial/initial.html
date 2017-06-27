@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-slides class="slides" (ionSlideDidChange)="slideChanged()">
+  <ion-slides pager class="slides" (ionSlideDidChange)="slideChanged()">
     <ion-slide padding>
       <img src="assets/imgs/slides.jpg" />
       <h1>Seja Bem-vindo</h1>
@@ -21,22 +21,10 @@
       sempre mostrando para você seus erros e como te ajudar</p>
     </ion-slide>
   </ion-slides>
+  <ion-fab right bottom *ngIf="currentSlide >= 2" go-page="register" root="true">
+    <button ion-fab>Entendi</button>
+  </ion-fab>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar color="primary">
-    <ion-row>
-      <ion-col text-center>
-        <img src="assets/imgs/dots-1.jpg" *ngIf="currentSlide == 0"/>
-        <img src="assets/imgs/dots-2.jpg" *ngIf="currentSlide == 1"/>
-        <img src="assets/imgs/dots-3.jpg" *ngIf="currentSlide >= 2"/>
-      </ion-col>
-    </ion-row>
-    <ion-fab right bottom *ngIf="currentSlide >= 2" go-page="register" root="true">
-      <button ion-fab>Entendi</button>
-    </ion-fab>
-  </ion-toolbar>
-</ion-footer>
 
 <section class="after-splash" text-center *ngIf="!viewAfterSplash">
   <img src="assets/imgs/splash.png"/>
