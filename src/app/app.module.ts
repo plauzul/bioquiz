@@ -19,6 +19,7 @@ import { Rank } from '../pages/rank/rank';
 import { Settings } from '../pages/settings/settings';
 import { Questions } from '../pages/questions/questions';
 import { ResultQuestions } from '../pages/result-questions/result-questions';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 
 // Components
 import { GoPage } from '../components/go-page/go-page';
@@ -28,6 +29,7 @@ import { Auth } from '../providers/auth';
 import { Users } from '../providers/users';
 import { Simulation } from '../providers/simulation';
 import { Ranks } from '../providers/ranks';
+import { PasswordReset } from '../providers/reset-password';
 import { Network } from '@ionic-native/network';
 import { Facebook } from '@ionic-native/facebook';
 
@@ -44,7 +46,8 @@ import { Facebook } from '@ionic-native/facebook';
     Rank,
     Settings,
     Questions,
-    ResultQuestions
+    ResultQuestions,
+    ResetPasswordPage
   ],
   imports: [
     RefreshPageModule,
@@ -65,7 +68,8 @@ import { Facebook } from '@ionic-native/facebook';
     Rank,
     Settings,
     Questions,
-    ResultQuestions
+    ResultQuestions,
+    ResetPasswordPage
   ],
   providers: [
     StatusBar,
@@ -74,6 +78,7 @@ import { Facebook } from '@ionic-native/facebook';
     Users,
     Simulation,
     Ranks,
+    PasswordReset,
     Network,
     Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

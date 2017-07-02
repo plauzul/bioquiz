@@ -8,6 +8,7 @@ import { Notifications } from '../../pages/notifications/notifications';
 import { Rank } from '../../pages/rank/rank';
 import { Settings } from '../../pages/settings/settings';
 import { Questions } from '../../pages/questions/questions';
+import { ResetPasswordPage } from '../../pages/reset-password/reset-password';
 
 
 @Directive({
@@ -29,7 +30,8 @@ export class GoPage {
       { title: 'simulations', component: Simulations },
       { title: 'settings',  component: Settings },
       { title: 'rank', component: Rank },
-      { title: 'notifications', component: Notifications }
+      { title: 'notifications', component: Notifications },
+      { title: 'reset-password', component: ResetPasswordPage }
     ];
   }
 
