@@ -143,7 +143,7 @@ export class HomePage {
   }
 
   presentMessageReport() {
-    this.weeklyAverage =
+    this.weeklyAverage = Math.trunc(
     (
       (
         (parseInt(this.resultsUser.segunda) / 100) || 0 +
@@ -154,7 +154,7 @@ export class HomePage {
         (parseInt(this.resultsUser.sabado) / 100) || 0 +
         (parseInt(this.resultsUser.domingo) / 100) || 0
       ) / 7
-    ) * 100;
+    ) * 100);
 
     if(this.weeklyAverage >= 0 && this.weeklyAverage <= 10) {
       this.messageReport = "tente estudar um pouco mais";
