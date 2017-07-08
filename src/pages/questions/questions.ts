@@ -1,11 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, Slides } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController, Slides } from 'ionic-angular';
 import { QuestionsSimulation } from '../../model/questions-simulation.model';
 import { ResultQuestions } from '../result-questions/result-questions';
 import { Simulations } from '../simulations/simulations';
 import { Simulation } from '../../providers/simulation';
 
-@IonicPage()
 @Component({
   selector: 'page-questions',
   templateUrl: 'questions.html',

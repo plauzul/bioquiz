@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, ToastController, AlertController, LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { Network } from '@ionic-native/network';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { User } from '../../model/user.model';
 import { Auth } from '../../providers/auth';
 
-@IonicPage()
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',

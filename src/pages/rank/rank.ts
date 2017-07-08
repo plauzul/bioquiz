@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController, LoadingController } from 'ionic-angular';
+import { NavController, ToastController, LoadingController } from 'ionic-angular';
 import { Ranks } from '../../providers/ranks';
 
-@IonicPage()
 @Component({
   selector: 'page-rank',
   templateUrl: 'rank.html',

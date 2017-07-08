@@ -1,10 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, Slides, ToastController, LoadingController } from 'ionic-angular';
+import { NavController, Slides, ToastController, LoadingController } from 'ionic-angular';
 import { User } from '../../model/user.model';
 import { PasswordReset } from '../../providers/reset-password';
 import { Login } from '../login/login';
 
-@IonicPage()
 @Component({
   selector: 'page-reset-password',
   templateUrl: 'reset-password.html',

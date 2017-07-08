@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, ActionSheetController } from 'ionic-angular'
+import { NavController, NavParams, LoadingController, ToastController, ActionSheetController } from 'ionic-angular'
 import { Simulation } from '../../providers/simulation';
 
-@IonicPage()
 @Component({
   selector: 'page-simulations',
   templateUrl: 'simulations.html',
